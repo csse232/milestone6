@@ -1,1 +1,2 @@
-# milestone 6.\nShould be the final milestone.
+# milestone 6.
+Should be the final milestone. Woo!
