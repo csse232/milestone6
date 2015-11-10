@@ -8,10 +8,8 @@ module MIPS_control_unit (ALUOp,
                           RegWrite, 
                           MemRead,
                           MemWrite,
- //                       IorD,
                           IRWrite, 
                           PCWrite,
-//                        PCWriteCond,
                           PCSrc,
                           Opcode,
                          // current_state,
@@ -34,10 +32,8 @@ module MIPS_control_unit (ALUOp,
    output       RegWrite;
    output       MemRead;
    output       MemWrite;
- //output       IorD;
    output       IRWrite;
    output       PCWrite;
- //output       PCWriteCond;
    //output [3:0] current_state;
    //output [3:0] next_state;
 	output		 MemSrc;
@@ -90,7 +86,9 @@ module MIPS_control_unit (ALUOp,
 	
 	parameter    in = 16;
 	parameter    out = 17;
-
+	
+	initial next_state = 1;
+	
    //register calculation
    always @ (posedge CLK)//, posedge Reset)
      begin
@@ -115,20 +113,28 @@ module MIPS_control_unit (ALUOp,
           
           Fetch:
             begin
+					//IR = Mem[PC]
+					//PC = PC + 1
+					
 					MemSrc = 0;
                MemRead = 1;
                IRWrite =  1;
 					PCWrite = 1;
 					SrcA = 0;
                SrcB = 1;
-               
+               PCSrc = 0;
                
                ALUOp = 3'b010;
                
             end 
                          
-          Other:
+          Other/*Decode & Fetch Register*/:
             begin
+					
+				//A = Reg[IR[11:9]]
+				//B = Reg[IR[8:6]]
+				//ALUOut = PC + SE[IR[5:0]]
+
                SrcA = 1;
                SrcB = 0;
                ALUOp = 3'b010;
@@ -171,14 +177,21 @@ module MIPS_control_unit (ALUOp,
 			Imm:
 				begin
 					SrcA = 1;
-					SrcB = 2'b10;
-					ALUOp = Opcode;
+					SrcB = 2;
+					//case(opcode)
+					//1://addi
+					ALUOp = 2;
+					//0100://ori not implimenting
+					//nor are we implimenting andi
+					
+					
+					//endcase
 				end
 			Imm2:
 				begin
 					RegWrite = 1;
 					MemtoReg = 2'b01;
-					RegDest = 1;
+					RegDest = 0;
 				end
 			Jal1:
 				begin
@@ -273,7 +286,7 @@ module MIPS_control_unit (ALUOp,
                
             end
           
-          Other: 
+          Other/*Decode & Fetch*/: 
             begin       
                $display("The opcode is %d", Opcode);
                case (Opcode)

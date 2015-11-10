@@ -26,7 +26,7 @@ module Mux3in16b(
     input clock,
     output reg [15:0] out
     );
-always @ (posedge clock)
+always @ (in1 or in2 or in3 or control)
 
 begin
 	//out = (control == 0) ? in1 : in2;

@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/griseous/Documents/csse232/Milestone6/work/top_test_isim_beh.exe" -prj "/home/griseous/Documents/csse232/Milestone6/work/top_test_beh.prj" "work.top_test" "work.glbl" 

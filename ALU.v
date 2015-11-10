@@ -27,7 +27,7 @@ module ALU(
 	 output reg isZero
     );
 
-always @ (posedge clock)
+always @ (in1 or in2 or control)
 begin
 	case(control)
 	/*and*/0: result = in1 & in2;

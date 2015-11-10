@@ -43,11 +43,11 @@ initial register[6] = 0;
 initial register[7] = 0;
 
 
-always @ (posedge clock)
+always @ (writeReg or readReg1 or readReg2 or writeFile or regWrite)
 begin
   readData1 = register[readReg1];
   readData2 = register[readReg2];
-  if (regWrite) begin
+  if (regWrite == 1) begin
     register[writeReg] = writeFile;
   end
 end

@@ -21,6 +21,96 @@
 // Additional Comments:
 // 
 ////////////////////////////////////////////////////////////////////////////////
+
+module top_test;
+
+	// Inputs
+	reg clock;
+	reg [15:0] in;
+
+	// Outputs
+	wire [15:0] out;
+
+	// Instantiate the Unit Under Test (UUT)
+	TopLevel uut (
+		.clock(clock), 
+		.in(in), 
+		.out(out)
+	);
+	
+	/*wire [15:0] PCin = uut.PCin, PCout = uut.PCout, WriteData = uut.WriteData, MemOut = uut.MemOut, MemIn = uut.MemIn, WriteFile = uut.WriteFile,
+		readData1 = uut.readData1, readData2 = uut.readData2, ALUa = uut.ALUa, ALUb = uut.ALUb, ALUOutput = uut.ALUOutput, AOutput = uut.AOutput, 
+		BOutput = uut.BOutput, ALUOutOutput = uut.ALUOutOutput, MemoryRegOut = uut.MemoryRegOut, IExtendedOut = uut.IExtendedOut,
+		JExtendedOut = uut.JExtendedOut;
+	
+	wire [11:0] jImm = uut.jImm;
+	wire [5:0] iImm = uut.jImm;
+	wire [3:0] op = uut.op;
+	wire [2:0] rd = uut.rd, rs = uut.rs, rt = uut.rt, funk = uut.funk, WriteReg = uut.WriteReg, ALUControl = uut.ALUControl, ALUOp = uut.ALUOp;
+	wire [1:0] MemToReg = uut.MemToReg, RegDest = uut.RegDest, SrcB = uut.SrcB, PCSrc = uut.PCSrc;
+	wire PCWrite = uut.PCWrite, branchCond = uut.branchCond, isZero = uut.isZero, MemWrite = uut.MemWrite, MemRead = uut.MemRead, 
+		IRWrite = uut.IRWrite, RegWrite = uut.RegWrite, OutputWrite = uut.OutputWrite, MemSrc = uut.MemSrc, SrcA = uut.SrcA;
+	*/
+	
+	wire [15:0] PC = uut.PCout;
+	wire [1:0] PCSrc = uut.PCSrc;
+	
+	
+	//memory
+	//wire [15:0] test [0:255] = uut.Memory.memory;
+	wire [15:0] Mem0 = uut.Memory.memory[0];
+	wire [15:0] MemOut = uut.MemOut;
+	wire MemSrc = uut.MemSrc;
+	
+	//registers
+	wire [15:0] reg_zero = uut.RegisterFile.register[0];
+	wire [15:0] reg_PC = uut.RegisterFile.register[1];
+	wire [15:0] reg_SP = uut.RegisterFile.register[2];
+	wire [15:0] reg_RA = uut.RegisterFile.register[3];
+	wire [15:0] reg_T0 = uut.RegisterFile.register[4];
+	wire [15:0] reg_T1 = uut.RegisterFile.register[5];
+	wire [15:0] reg_T2 = uut.RegisterFile.register[6];
+	wire [15:0] reg_T3 = uut.RegisterFile.register[7];
+	
+	
+	//control unit
+	wire [4:0] current_state = uut.Control.current_state;
+	
+	//commands
+	wire [3:0] op = uut.op;
+	wire [2:0] rs = uut.rs;
+	wire [2:0] rt = uut.rt;
+	
+	
+	//alu
+	wire [15:0] ALUOutput = uut.ALUOutput;
+	
+	initial begin //clock
+			#100;
+			forever
+				begin
+					clock = 0;
+					#10
+					clock = 1'b1;
+					#10;
+				end
+	end	
+	
+	
+	initial begin
+		// Initialize Inputs
+		in = 0;
+
+		// Wait 100 ns for global reset to finish
+		#100;
+        
+		// Add stimulus here
+		
+		#100;
+	end
+      
+endmodule
+
 /*
           _____                    _____                    _____            _____            _____          
          /\    \                  /\    \                  /\    \          /\    \          /\    \         
@@ -67,75 +157,3 @@
          ~~                       \/____/                  \/____/                                           
                                                                                                              
 */
-module top_test;
-
-	// Inputs
-	reg clock;
-	reg [15:0] in;
-
-	// Outputs
-	wire [15:0] out;
-
-	// Instantiate the Unit Under Test (UUT)
-	TopLevel uut (
-		.clock(clock), 
-		.in(in), 
-		.out(out)
-	);
-	
-	/*wire [15:0] PCin = uut.PCin, PCout = uut.PCout, WriteData = uut.WriteData, MemOut = uut.MemOut, MemIn = uut.MemIn, WriteFile = uut.WriteFile,
-		readData1 = uut.readData1, readData2 = uut.readData2, ALUa = uut.ALUa, ALUb = uut.ALUb, ALUOutput = uut.ALUOutput, AOutput = uut.AOutput, 
-		BOutput = uut.BOutput, ALUOutOutput = uut.ALUOutOutput, MemoryRegOut = uut.MemoryRegOut, IExtendedOut = uut.IExtendedOut,
-		JExtendedOut = uut.JExtendedOut;
-	
-	wire [11:0] jImm = uut.jImm;
-	wire [5:0] iImm = uut.jImm;
-	wire [3:0] op = uut.op;
-	wire [2:0] rd = uut.rd, rs = uut.rs, rt = uut.rt, funk = uut.funk, WriteReg = uut.WriteReg, ALUControl = uut.ALUControl, ALUOp = uut.ALUOp;
-	wire [1:0] MemToReg = uut.MemToReg, RegDest = uut.RegDest, SrcB = uut.SrcB, PCSrc = uut.PCSrc;
-	wire PCWrite = uut.PCWrite, branchCond = uut.branchCond, isZero = uut.isZero, MemWrite = uut.MemWrite, MemRead = uut.MemRead, 
-		IRWrite = uut.IRWrite, RegWrite = uut.RegWrite, OutputWrite = uut.OutputWrite, MemSrc = uut.MemSrc, SrcA = uut.SrcA;
-	*/
-	
-	wire [15:0] PC = uut.PCout;
-	
-	
-	//memory
-	wire [15:0] Mem0 = uut.Memory.memory[0];
-	
-	//registers
-	wire [15:0] reg0 = uut.RegisterFile.register[0];
-	wire [15:0] reg1 = uut.RegisterFile.register[1];
-	wire [15:0] reg2 = uut.RegisterFile.register[2];
-	wire [15:0] reg3 = uut.RegisterFile.register[3];
-	wire [15:0] reg4 = uut.RegisterFile.register[4];
-	wire [15:0] reg5 = uut.RegisterFile.register[5];
-	wire [15:0] reg6 = uut.RegisterFile.register[6];
-	wire [15:0] reg7 = uut.RegisterFile.register[7];
-	
-	initial begin //clock
-			#100;
-			forever
-				begin
-					clock = 0;
-					#10
-					clock = 1'b1;
-					#10;
-				end
-	end	
-	
-	
-	initial begin
-		// Initialize Inputs
-		in = 0;
-
-		// Wait 100 ns for global reset to finish
-		#100;
-        
-		// Add stimulus here
-		
-		#100;
-	end
-      
-endmodule
-

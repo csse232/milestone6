@@ -28,7 +28,7 @@ module InstructionRegister(
 	 output reg [11:0] jImm
     );
 //initial IR_in = 0;
-always @ (posedge clock)
+always @ (IRWrite or IR_in)
 begin
 	if (IRWrite) begin
 		op = IR_in[15:12];
