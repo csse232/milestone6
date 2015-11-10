@@ -1,0 +1,11 @@
+
+
+
+// Instantiate the module
+TopLevel instance_name (
+    .clock(clock), 
+    .in(in), 
+    .out(out)
+    );
+
+
