@@ -1,5 +1,0 @@
-set -tmpdir "/home/griseous/Documents/csse232/Milestone5/work/xst/projnav.tmp"
-set -xsthdpdir "/home/griseous/Documents/csse232/Milestone5/work/xst"
-elaborate
--ifn PC.prj
--ifmt mixed
