@@ -61,6 +61,8 @@ module top_test;
 	wire [15:0] Mem0 = uut.Memory.memory[0];
 	wire [15:0] MemOut = uut.MemOut;
 	wire MemSrc = uut.MemSrc;
+	wire [15:0] MemoryReg = uut.MemoryRegOut;
+	wire [2:0] MemToReg = uut.MemToReg;
 	
 	//registers
 	wire [15:0] reg_zero = uut.RegisterFile.register[0];
@@ -91,6 +93,8 @@ module top_test;
 	
 	//alu
 	wire [15:0] ALUOutput = uut.ALUOutput;
+	wire [15:0] ALUOutOutput = uut.ALUOutOutput;
+	wire isZero = uut.isZero;
 	
 	//multiplexors
 	/*wire [2:0] RegMux = uut.WriteRegSourceMux.out;

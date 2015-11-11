@@ -28,7 +28,13 @@ module Mux2in16b(
 always @ (in1 or in2 or control)
 
 begin
-	out = (control == 0) ? in1 : in2;
+	if (control == 0)
+	begin
+		out = in1;
+	end
+	else begin
+		out = in2;
+	end
 end
 
 endmodule

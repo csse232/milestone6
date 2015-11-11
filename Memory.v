@@ -41,6 +41,7 @@ begin
 	end
 	
 	if (MemWrite) begin
+		$display("Writing %b to memory",WriteData);
 		memory[MemIn] = WriteData;
 	end
 

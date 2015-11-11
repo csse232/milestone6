@@ -20,7 +20,8 @@ module MIPS_control_unit (ALUOp,
 								  
 								  MemSrc,
 								  OutputWrite,
-								  BranchCond
+								  BranchCond,
+								  BranchNECond
                           );
 
    output [2:0] ALUOp;
@@ -39,6 +40,7 @@ module MIPS_control_unit (ALUOp,
 	output		 MemSrc;
 	output       OutputWrite;
 	output       BranchCond;
+	output       BranchNECond;
 	
 
    input [3:0]  Opcode;
@@ -59,6 +61,7 @@ module MIPS_control_unit (ALUOp,
    reg          PCWrite;
 	reg          MemSrc;
 	reg          BranchCond;
+	reg          BranchNECond;
 	reg          OutputWrite;
 
    //state flip-flops
@@ -110,6 +113,7 @@ module MIPS_control_unit (ALUOp,
         PCWrite = 0;
 		  OutputWrite = 0;
 		  BranchCond = 0;
+		  BranchNECond = 0;
         
         case (current_state)
           
@@ -137,8 +141,8 @@ module MIPS_control_unit (ALUOp,
 				//B = Reg[IR[8:6]]
 				//ALUOut = PC + SE[IR[5:0]]
 
-               SrcA = 1;
-               SrcB = 0;
+               SrcA = 0;
+               SrcB = 2;
                ALUOp = 3'b010;
             end
         
@@ -165,6 +169,7 @@ module MIPS_control_unit (ALUOp,
 				begin
 					MemWrite = 1;
 					MemSrc = 1;
+					MemtoReg = 2'b00;
 				end
 			LW1:
 				begin
@@ -205,9 +210,10 @@ module MIPS_control_unit (ALUOp,
 				end
 			Jal2:
 				begin
+					RegDest = 2;//ra
 					RegWrite = 1;
 					MemtoReg = 2'b01;
-					RegDest = 2;//ra
+					
 					PCWrite = 1;
 					PCSrc = 1;
 				end
@@ -228,21 +234,23 @@ module MIPS_control_unit (ALUOp,
 				end
 			brancheq:
 				begin
+					PCSrc = 2;
 					SrcA = 1;
 					SrcB = 0;
 					ALUOp = 3'b011;
 					BranchCond = 1;
-					PCWrite = 1;
-					PCSrc = 0;
+					//PCWrite = 1;
+					
 				end
 			branchne:
 				begin
+					PCSrc = 2;
 					SrcA = 1;
 					SrcB = 0;
 					ALUOp = 3'b011;
-					BranchCond = 0;
-					PCWrite = 1;
-					PCSrc = 0;
+					BranchNECond = 1;
+					//PCWrite = 1;
+					
 				end
 				
 			in:

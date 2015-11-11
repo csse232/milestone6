@@ -33,11 +33,11 @@ module TopLevel(
 	wire [3:0] op;
 	wire [2:0] rd, rs, rt, funk, WriteReg, ALUControl, ALUOp;
 	wire [1:0] MemToReg, RegDest, SrcB, PCSrc;
-	wire PCWrite, branchCond, isZero, MemWrite, MemRead, IRWrite, RegWrite, OutputWrite, MemSrc, SrcA;
+	wire PCWrite, branchCond, branchNECond, isZero, MemWrite, MemRead, IRWrite, RegWrite, OutputWrite, MemSrc, SrcA;
 	
 	
 	
-	PC PC(PCin, PCout, clock, PCWrite, branchCond, isZero);
+	PC PC(PCin, PCout, clock, PCWrite, branchCond, branchNECond, isZero);
 	Memory Memory(clock, MemWrite, MemRead, WriteData, MemOut, MemIn);
 	InstructionRegister IR(MemOut, clock, IRWrite, op, rd, rs, rt, funk, iImm, jImm);
 	RegisterFile RegisterFile(WriteReg, rs, rt, WriteFile, clock, RegWrite, readData1, readData2);
@@ -64,7 +64,7 @@ module TopLevel(
 	
 	//Control Units
 	MIPS_control_unit Control(ALUOp, SrcA, SrcB, MemToReg, RegDest, RegWrite, MemRead, MemWrite, 
-		IRWrite, PCWrite, PCSrc, op, clock, funk, MemSrc, OutputWrite, branchCond);
+		IRWrite, PCWrite, PCSrc, op, clock, funk, MemSrc, OutputWrite, branchCond, branchNECond);
 	ALU_Control ALUControlUnit(ALUOp, funk, ALUControl);
 	
 

@@ -23,6 +23,7 @@ module DataReg16b(
 	 input clock,
     output reg [15:0] data_out
     );
+	 
 always @ (posedge clock)
 begin
 	data_out = data_in;
