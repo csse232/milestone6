@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2015-11-10T23:25:39</DateModified>
+  <DateModified>2015-11-11T12:51:38</DateModified>
   <ModuleName>test_PC</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>/home/griseous/Documents/csse232/Milestone6/iseconfig/test_PC.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/griseous/Documents/csse232/Milestone6/work/</ImplementationReportsDirectory>
+  <SavedFilePath>/home/griseous/Documents/csse232/Milestone6_2/milestone6/iseconfig/test_PC.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/home/griseous/Documents/csse232/Milestone6_2/milestone6/work/</ImplementationReportsDirectory>
   <DateInitialized>2015-11-02T21:25:44</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

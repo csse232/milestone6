@@ -7,17 +7,16 @@
    <ItemView engineview="SynthesisOnly" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
          <ClosedNodesVersion>2</ClosedNodesVersion>
-         <ClosedNode>/TopLevel |home|griseous|Documents|csse232|Milestone6|TopLevel.v</ClosedNode>
          <ClosedNode>/test_PC |home|griseous|Documents|csse232|Milestone6|test_PC.v</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>test_PC (/home/griseous/Documents/csse232/Milestone6/test_PC.v)</SelectedItem>
+         <SelectedItem>Control - MIPS_control_unit (/home/griseous/Documents/csse232/Milestone6/Control.v)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000000ec000000020000000000000000000000000200000064ffffffff000000810000000300000002000000ec0000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001b7000000020000000000000000000000000200000064ffffffff000000810000000300000002000001b70000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>test_PC (/home/griseous/Documents/csse232/Milestone6/test_PC.v)</CurrentItem>
+      <CurrentItem>Control - MIPS_control_unit (/home/griseous/Documents/csse232/Milestone6/Control.v)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VERILOG" guiview="Process" >
       <ClosedNodes>
@@ -61,5 +60,57 @@
       <CurrentItem>work</CurrentItem>
    </ItemView>
    <SourceProcessView>000000ff00000000000000020000014c0000011d01000000060100000002</SourceProcessView>
-   <CurrentView>Implementation</CurrentView>
+   <CurrentView>Behavioral Simulation</CurrentView>
+   <ItemView engineview="BehavioralSim" guiview="Source" compilemode="AutoCompile" >
+      <ClosedNodes>
+         <ClosedNodesVersion>2</ClosedNodesVersion>
+         <ClosedNode>/test_2Mux |home|griseous|Documents|csse232|Milestone6|test_2Mux.v</ClosedNode>
+         <ClosedNode>/test_3Mux |home|griseous|Documents|csse232|Milestone6|test_3Mux.v</ClosedNode>
+         <ClosedNode>/test_4Mux |home|griseous|Documents|csse232|Milestone6|test_4Mux.v</ClosedNode>
+         <ClosedNode>/test_ALU |home|griseous|Documents|csse232|Milestone6|test_ALU.v</ClosedNode>
+         <ClosedNode>/test_ALUControl |home|griseous|Documents|csse232|Milestone6|test_ALUControl.v</ClosedNode>
+         <ClosedNode>/test_DataReg |home|griseous|Documents|csse232|Milestone6|test_DataReg.v</ClosedNode>
+         <ClosedNode>/test_IR |home|griseous|Documents|csse232|Milestone6|test_IR.v</ClosedNode>
+         <ClosedNode>/test_Memory |home|griseous|Documents|csse232|Milestone6|test_Memory.v</ClosedNode>
+         <ClosedNode>/test_PC |home|griseous|Documents|csse232|Milestone6|test_PC.v</ClosedNode>
+         <ClosedNode>/test_RegisterFile |home|griseous|Documents|csse232|Milestone6|test_RegisterFile.v</ClosedNode>
+         <ClosedNode>/test_SE12to16 |home|griseous|Documents|csse232|Milestone6|test_SE12to16.v</ClosedNode>
+         <ClosedNode>/test_SE6to16 |home|griseous|Documents|csse232|Milestone6|test_SE6to16.v</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem>uut - MIPS_control_unit (/home/griseous/Documents/csse232/Milestone6/Control.v)</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001cb000000020000000000000000000000000200000064ffffffff000000810000000300000002000001cb0000000100000003000000000000000100000003</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>uut - MIPS_control_unit (/home/griseous/Documents/csse232/Milestone6/Control.v)</CurrentItem>
+   </ItemView>
+   <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>Design Utilities</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem/>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f4000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f40000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem/>
+   </ItemView>
+   <ItemView engineview="BehavioralSim" sourcetype="DESUT_VERILOG" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem>Simulate Behavioral Model</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f4000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f40000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>Simulate Behavioral Model</CurrentItem>
+   </ItemView>
 </Project>

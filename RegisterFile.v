@@ -47,6 +47,7 @@ always @ (writeReg or readReg1 or readReg2 or writeFile or regWrite)
 begin
   readData1 = register[readReg1];
   readData2 = register[readReg2];
+  //if (writeReg ==0) $display("Warning: Tried to write to 0 register!");
   if (regWrite == 1) #1 begin
     if (writeReg !=0) register[writeReg] = writeFile;
   end

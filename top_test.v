@@ -62,7 +62,9 @@ module top_test;
 	wire [15:0] MemOut = uut.MemOut;
 	wire MemSrc = uut.MemSrc;
 	wire [15:0] MemoryReg = uut.MemoryRegOut;
-	wire [2:0] MemToReg = uut.MemToReg;
+	wire [1:0] MemToReg = uut.MemToReg;
+	wire MemWrite = uut.MemWrite;
+	wire [15:0] MemIn = uut.BOutput;
 	
 	//registers
 	wire [15:0] reg_zero = uut.RegisterFile.register[0];
@@ -75,6 +77,7 @@ module top_test;
 	wire [15:0] reg_T3 = uut.RegisterFile.register[7];
 	
 	wire [15:0] readData1 = uut.readData1;
+	wire [1:0] RegDest = uut.RegDest;
 	
 	
 	//control unit
@@ -85,6 +88,8 @@ module top_test;
 	wire [2:0] rs = uut.rs;
 	wire [2:0] rt = uut.rt;
 	wire [2:0] rd = uut.rd;
+	wire [11:0] jImm = uut.jImm;
+	wire [5:0] iImm = uut.iImm;
 	
 	//registerfile
 	wire regWrite = uut.RegisterFile.regWrite;
@@ -117,13 +122,13 @@ module top_test;
 	
 	initial begin
 		// Initialize Inputs
-		in = 0;
+		in = 'hDEAD;
 
 		// Wait 100 ns for global reset to finish
 		#100;
         
 		// Add stimulus here
-		
+		in = 'hDEAD;
 		#100;
 	end
       

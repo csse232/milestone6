@@ -40,8 +40,8 @@ begin
 		MemOut = memory[MemIn];
 	end
 	
-	if (MemWrite) begin
-		$display("Writing %b to memory",WriteData);
+	if (MemWrite) #1 /*Waits because logic*/ begin
+		$display("Writing %b to memory at index %i",WriteData, MemIn);
 		memory[MemIn] = WriteData;
 	end
 

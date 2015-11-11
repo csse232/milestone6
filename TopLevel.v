@@ -25,7 +25,7 @@ module TopLevel(
 	 );
 	//make sure we don't need zero extenders or anything like that
 	
-	wire [15:0] PCin, PCout, WriteData, MemOut, MemIn, WriteFile, readData1, readData2,
+	wire [15:0] PCin, PCout, MemOut, MemIn, WriteFile, readData1, readData2,
 		ALUa, ALUb, ALUOutput, AOutput, BOutput, ALUOutOutput, MemoryRegOut, IExtendedOut, JExtendedOut;
 	
 	wire [11:0] jImm;
@@ -38,7 +38,7 @@ module TopLevel(
 	
 	
 	PC PC(PCin, PCout, clock, PCWrite, branchCond, branchNECond, isZero);
-	Memory Memory(clock, MemWrite, MemRead, WriteData, MemOut, MemIn);
+	Memory Memory(clock, MemWrite, MemRead, BOutput, MemOut, MemIn);
 	InstructionRegister IR(MemOut, clock, IRWrite, op, rd, rs, rt, funk, iImm, jImm);
 	RegisterFile RegisterFile(WriteReg, rs, rt, WriteFile, clock, RegWrite, readData1, readData2);
 	ALU ALU(ALUa, ALUb, ALUControl, clock, ALUOutput, isZero);

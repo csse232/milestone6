@@ -167,8 +167,8 @@ module MIPS_control_unit (ALUOp,
 				end
 			SW:
 				begin
-					MemWrite = 1;
 					MemSrc = 1;
+					MemWrite = 1;
 					MemtoReg = 2'b00;
 				end
 			LW1:
@@ -256,8 +256,8 @@ module MIPS_control_unit (ALUOp,
 			in:
 				begin
 					RegWrite = 1;
-					MemtoReg = 2'b10;
-					RegDest = 1;
+					MemtoReg = 2;
+					RegDest = 0;
 				end
 			out:
 				begin
