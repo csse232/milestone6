@@ -72,6 +72,8 @@ module top_test;
 	wire [15:0] reg_T2 = uut.RegisterFile.register[6];
 	wire [15:0] reg_T3 = uut.RegisterFile.register[7];
 	
+	wire [15:0] readData1 = uut.readData1;
+	
 	
 	//control unit
 	wire [4:0] current_state = uut.Control.current_state;
@@ -81,9 +83,20 @@ module top_test;
 	wire [2:0] rs = uut.rs;
 	wire [2:0] rt = uut.rt;
 	
+	//registerfile
+	wire regWrite = uut.RegisterFile.regWrite;
+	wire [2:0] writeReg = uut.RegisterFile.writeReg;
+	wire [15:0] writeData = uut.RegisterFile.writeFile;
 	
 	//alu
 	wire [15:0] ALUOutput = uut.ALUOutput;
+	
+	//multiplexors
+	/*wire [2:0] RegMux = uut.WriteRegSourceMux.out;
+	wire [2:0] RegMuxin0 = uut.WriteRegSourceMux.in1;
+	wire [2:0] RegMuxin1 = uut.WriteRegSourceMux.in2;
+	wire [2:0] RegMuxin2 = uut.WriteRegSourceMux.in3;
+	wire [1:0] RegMuxcon = uut.WriteRegSourceMux.control;*/
 	
 	initial begin //clock
 			#100;

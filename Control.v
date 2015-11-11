@@ -28,7 +28,7 @@ module MIPS_control_unit (ALUOp,
    output [1:0] SrcB;
    output       SrcA;
    output [1:0] MemtoReg;
-   output       RegDest;
+   output [1:0] RegDest;
    output       RegWrite;
    output       MemRead;
    output       MemWrite;
@@ -51,7 +51,7 @@ module MIPS_control_unit (ALUOp,
    reg [1:0]    SrcB;
    reg          SrcA;
    reg [1:0]     MemtoReg;
-   reg          RegDest;
+   reg [1:0]    RegDest;
    reg          RegWrite;
    reg          MemRead;
    reg          MemWrite;
@@ -108,6 +108,8 @@ module MIPS_control_unit (ALUOp,
         MemWrite = 0; 
         IRWrite = 0; 
         PCWrite = 0;
+		  OutputWrite = 0;
+		  BranchCond = 0;
         
         case (current_state)
           
@@ -203,7 +205,7 @@ module MIPS_control_unit (ALUOp,
 				begin
 					RegWrite = 1;
 					MemtoReg = 2'b01;
-					RegDest = 3;//ra
+					RegDest = 2;//ra
 					PCWrite = 1;
 					PCSrc = 1;
 				end
@@ -262,24 +264,24 @@ module MIPS_control_unit (ALUOp,
    always @ (current_state, next_state, Opcode)
      begin         
 
-        $display("The current state is %d", current_state);
+        //$display("The current state is %d", current_state);
         
         case (current_state)
           
           Fetch:
             begin
-					$display("The opcode is %d", Opcode);
+					//$display("The opcode is %d", Opcode);
 					case (Opcode)
 						4'b1100:
 							begin
-								$display("I/O, funk is %d", funk);
+								//$display("I/O, funk is %d", funk);
 								next_state = (funk == 1) ? in : out;
-								$display("The next state is %s", (next_state == in) ? "in" : "out");
+								//$display("The next state is %s", (next_state == in) ? "in" : "out");
 							end
 						default:
 							begin
 								next_state = Other;
-								$display("The next state is Other");
+								//$display("The next state is Other");
 							end
 					endcase
 					
@@ -288,50 +290,50 @@ module MIPS_control_unit (ALUOp,
           
           Other/*Decode & Fetch*/: 
             begin       
-               $display("The opcode is %d", Opcode);
+               //$display("The opcode is %d", Opcode);
                case (Opcode)
                   0:
 							begin
 								next_state = RType;
-								$display("The next state is RType");
+								//$display("The next state is RType");
 							end
 							
 						4'b0010://lw
 							begin
 								next_state = LWSW;
-								$display("The next state is LWSW");
+								//$display("The next state is LWSW");
 							end
 						4'b0011://sw
 							begin
 								next_state = LWSW;
-								$display("The next state is LWSW");
+								//$display("The next state is LWSW");
 							end
 						
 						4'b0001://addi
 							begin
 								next_state = Imm;
-								$display("The next state is imm");
+								//$display("The next state is imm");
 							end
 						4'b0100://ori
 							begin
 								next_state = Imm;
-								$display("The next state is imm");
+								//$display("The next state is imm");
 							end
 						4'b0101://andi
 							begin
 								next_state = Imm;
-								$display("The next state is imm");
+								//$display("The next state is imm");
 							end
                  
 						4'b1010://jal
 							begin
 								next_state = Jal1;
-								$display("The next state is Jal1");
+								//$display("The next state is Jal1");
 							end
 						4'b1011://jr
 							begin
 								next_state = jr;
-								$display("The next state is jr");
+								//$display("The next state is jr");
 							end
 						4'b1001://j
 							begin
@@ -341,121 +343,121 @@ module MIPS_control_unit (ALUOp,
 						4'b0111://beq
 							begin
 								next_state = brancheq;
-								$display("The next state is brancheq");
+								//$display("The next state is brancheq");
 							end
 						4'b1000://bne
 							begin
 								next_state = branchne;
-								$display("The next state is branchne");
+								//$display("The next state is branchne");
 							end
 							
                  default:
                    begin 
-                      $display(" Wrong Opcode %d ", Opcode);  
+                      //$display(" Wrong Opcode %d ", Opcode);  
                       next_state = Fetch; 
                    end
                endcase  
                
-               $display("In Other, the next_state is %d", next_state);
+               //$display("In Other, the next_state is %d", next_state);
             end
           
 			RType:
 				begin
                next_state = RWrite;
-               $display("In Rtype, the next_state is %d", next_state);
+               //$display("In Rtype, the next_state is %d", next_state);
             end
           
 			RWrite:
             begin
                next_state = Fetch;
-               $display("In R_Write, the next_state is %d", next_state);
+               //$display("In R_Write, the next_state is %d", next_state);
             end
 				
 			LWSW:
 				begin
-					$display("In LWSW, the opcode is %d", Opcode);
+					//$display("In LWSW, the opcode is %d", Opcode);
 					next_state = (Opcode == 4'b0010 /*lw*/) ? LW1 : SW;
-					$display("In R_Write, the next_state is %d", next_state);
+					//$display("In R_Write, the next_state is %d", next_state);
 				end
 			LW1:
 				begin
 					next_state = LW2;
-					$display("In LW1, the next_state is %d", next_state);
+					//$display("In LW1, the next_state is %d", next_state);
 				end
 			LW2:
 				begin
 					next_state = Fetch;
-					$display("In LW2, the next_state is %d", next_state);
+					//$display("In LW2, the next_state is %d", next_state);
 				end
 			SW:
 				begin
 					next_state = Fetch;
-					$display("In SW, the next_state is %d", next_state);
+					//$display("In SW, the next_state is %d", next_state);
 				end
 				
 			Imm:
 				begin
 					next_state = Imm2;
-					$display("In Imm, the next_state is %d", next_state);
+					//$display("In Imm, the next_state is %d", next_state);
 				end
 			Imm2:
 				begin
 					next_state = Fetch;
-					$display("In Imm2, the next_state is %d", next_state);	
+					//$display("In Imm2, the next_state is %d", next_state);	
 				end
 			
 			Jal1:
 				begin
 					next_state = Jal2;
-					$display("In Jal1, the next_state is %d", next_state);	
+					//$display("In Jal1, the next_state is %d", next_state);	
 				end
 			Jal2:
 				begin
 					next_state = Fetch;
-					$display("In Jal2, the next_state is %d", next_state);	
+					//$display("In Jal2, the next_state is %d", next_state);	
 				end
 			jr:
 				begin
 					next_state = Fetch;
-					$display("In jr, the next_state is %d", next_state);
+					//$display("In jr, the next_state is %d", next_state);
 				end
 			jump:
 				begin
 					next_state = Fetch;
-					$display("In Jump, the next_state is %d", next_state);
+					//$display("In Jump, the next_state is %d", next_state);
 				end
 			 
 			brancheq:
             begin
                next_state = Fetch;
-               $display("In Brancheq, the next_state is %d", next_state);
+               //$display("In Brancheq, the next_state is %d", next_state);
             end
 			branchne:
             begin
                next_state = Fetch;
-               $display("In Branchne, the next_state is %d", next_state);
+               //$display("In Branchne, the next_state is %d", next_state);
             end
 			
 			in:
 				begin
 					next_state = Fetch;
-					$display("In \"In\", the next_state is %d", next_state);
+					//$display("In \"In\", the next_state is %d", next_state);
 				end
 			out:
 				begin
 					next_state = Fetch;
-					$display("In \"out\", the next_state is %d", next_state);
+					//$display("In \"out\", the next_state is %d", next_state);
 				end
 			
 			default:
             begin
-               $display(" Not implemented!");
+               //$display(" Not implemented!");
                next_state = Fetch;
             end
           
         endcase
         
-        $display("After the tests, the next_state is %d", next_state);
+        //$display("After the tests, the next_state is %d", next_state);
                 
      end
 

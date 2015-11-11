@@ -24,9 +24,12 @@ module OutputRegister(
 	 output reg [15:0] data_out,
 	 input outputWrite
 	 );
-always @ (posedge clock)
+always @ (outputWrite)
 begin
-	if(outputWrite) data_out = data_in;
+	if (outputWrite == 1) begin
+		$display("Output: %i", data_in);
+		data_out = data_in;
+	end
 end
 
 endmodule
