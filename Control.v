@@ -125,7 +125,7 @@ module MIPS_control_unit (ALUOp,
 					SrcA = 0;
                SrcB = 1;
                PCSrc = 0;
-               
+               RegWrite = 0;
                ALUOp = 3'b010;
                
             end 
@@ -147,6 +147,7 @@ module MIPS_control_unit (ALUOp,
 					SrcA = 1;
 					SrcB = 0;
 					ALUOp = Opcode;
+					//RegWrite = 1;
 				end
 			RWrite:
 				begin
@@ -169,6 +170,7 @@ module MIPS_control_unit (ALUOp,
 				begin
 					MemRead = 1;
 					MemSrc = 1;
+					RegDest = 0;
 				end
 			LW2:
 				begin

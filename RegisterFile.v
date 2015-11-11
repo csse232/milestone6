@@ -48,7 +48,7 @@ begin
   readData1 = register[readReg1];
   readData2 = register[readReg2];
   if (regWrite == 1) begin
-    register[writeReg] = writeFile;
+    if (writeReg !=0) register[writeReg] = writeFile;
   end
 end
 endmodule

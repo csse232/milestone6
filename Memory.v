@@ -33,7 +33,7 @@ initial $readmemb("program.mem", memory);
 initial MemOut = 0;
 
 
-always @ (posedge clock)
+always @ (MemWrite or MemRead or WriteData or MemIn)
 begin
 	
 	if (MemRead) begin

@@ -82,6 +82,7 @@ module top_test;
 	wire [3:0] op = uut.op;
 	wire [2:0] rs = uut.rs;
 	wire [2:0] rt = uut.rt;
+	wire [2:0] rd = uut.rd;
 	
 	//registerfile
 	wire regWrite = uut.RegisterFile.regWrite;
