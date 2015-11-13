@@ -68,7 +68,7 @@ module top_test;
 	
 	//registers
 	wire [15:0] reg_zero = uut.RegisterFile.register[0];
-	wire [15:0] reg_PC = uut.RegisterFile.register[1];
+	wire [15:0] reg_RV = uut.RegisterFile.register[1];
 	wire [15:0] reg_SP = uut.RegisterFile.register[2];
 	wire [15:0] reg_RA = uut.RegisterFile.register[3];
 	wire [15:0] reg_T0 = uut.RegisterFile.register[4];
@@ -88,6 +88,7 @@ module top_test;
 	wire [2:0] rs = uut.rs;
 	wire [2:0] rt = uut.rt;
 	wire [2:0] rd = uut.rd;
+	wire [2:0] funk = uut.funk;
 	wire [11:0] jImm = uut.jImm;
 	wire [5:0] iImm = uut.iImm;
 	
@@ -113,7 +114,7 @@ module top_test;
 			forever
 				begin
 					clock = 0;
-					#10
+					#10;
 					clock = 1'b1;
 					#10;
 				end
@@ -122,13 +123,13 @@ module top_test;
 	
 	initial begin
 		// Initialize Inputs
-		in = 'hDEAD;
+		in = 0;
 
 		// Wait 100 ns for global reset to finish
 		#100;
-        
+      //in = 'h13b0;
+		in = 'h7FFF;
 		// Add stimulus here
-		in = 'hDEAD;
 		#100;
 	end
       

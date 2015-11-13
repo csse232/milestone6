@@ -52,7 +52,7 @@ module TopLevel(
 	
 	//Muxxxii
 	Mux2in16b MemoryMux(PCout, ALUOutOutput, MemSrc, clock, MemIn);
-	Mux3in16b WriteRegDataMux(MemoryRegOut, ALUOutOutput, in, MemToReg, clock, WriteFile);
+	Mux4in16b WriteRegDataMux(MemoryRegOut, ALUOutOutput, in, PCout, MemToReg, clock, WriteFile);
 	Mux3in3b  WriteRegSourceMux(rt, rd, 3'b011, RegDest, clock, WriteReg);
 	Mux2in16b ALUSrcAMux(PCout, AOutput, SrcA, clock, ALUa);
 	Mux3in16b ALUSrcBMux(BOutput, 1, IExtendedOut, SrcB, clock, ALUb);

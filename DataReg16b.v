@@ -23,10 +23,13 @@ module DataReg16b(
 	 input clock,
     output reg [15:0] data_out
     );
+	 reg [15:0] temp;
 	 
+	 initial temp = 0;
 always @ (posedge clock)
 begin
-	data_out = data_in;
+	data_out = temp;
+	#1 temp = data_in;
 end
 
 endmodule

@@ -212,7 +212,7 @@ module MIPS_control_unit (ALUOp,
 				begin
 					RegDest = 2;//ra
 					RegWrite = 1;
-					MemtoReg = 2'b01;
+					MemtoReg = 2'b11;
 					
 					PCWrite = 1;
 					PCSrc = 1;
@@ -284,8 +284,14 @@ module MIPS_control_unit (ALUOp,
 					case (Opcode)
 						4'b1100:
 							begin
-								//$display("I/O, funk is %d", funk);
-								next_state = (funk == 1) ? in : out;
+								$display("I/O, funk is %d", funk);
+								if (funk == 1) begin
+									next_state = in;
+								end
+								else
+								begin
+									next_state = out;
+								end
 								//$display("The next state is %s", (next_state == in) ? "in" : "out");
 							end
 						default:
@@ -315,6 +321,7 @@ module MIPS_control_unit (ALUOp,
 							end
 						4'b0011://sw
 							begin
+								next_state = LWSW;
 								next_state = LWSW;
 								//$display("The next state is LWSW");
 							end

@@ -37,7 +37,7 @@ begin
 	/*sl*/4: result = in1 << in2;
 	/*srl*/5: result = in1 >> in2;
 	/*sra*/6: result = $signed(in1) >>> in2;
-	/*slt*/7: result = ($signed(in1 - in2) < 0) ? 1 : 0;
+	/*slt*/7: result = ($signed(in1) - $signed(in2) < 0) ? 1 : 0;
 	endcase
 	isZero = (in1 - in2) == 0;
 end

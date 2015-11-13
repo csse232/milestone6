@@ -29,7 +29,7 @@ module Memory(
 reg [15:0] memory [0:255]; //unsure if this is the correct value¸ may be 2 to the power of 16 -1
 
 //load the program
-initial $readmemb("program.mem", memory);
+initial $readmemb("Output.txt", memory);
 initial MemOut = 0;
 
 
@@ -46,6 +46,4 @@ begin
 	end
 
 end
-
-
 endmodule
