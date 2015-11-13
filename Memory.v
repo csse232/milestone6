@@ -41,7 +41,7 @@ begin
 	end
 	
 	if (MemWrite) #1 /*Waits because logic*/ begin
-		$display("Writing %b to memory at index %i",WriteData, MemIn);
+		//$display("Writing %b to memory at index %i",WriteData, MemIn);
 		memory[MemIn] = WriteData;
 	end
 

@@ -27,7 +27,7 @@ module OutputRegister(
 always @ (outputWrite)
 begin
 	if (outputWrite == 1) begin
-		$display("Output: %i", data_in);
+		//$display("Output: %i", data_in);
 		data_out = data_in;
 	end
 end

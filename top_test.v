@@ -51,6 +51,13 @@ module top_test;
 	wire PCWrite = uut.PCWrite, branchCond = uut.branchCond, isZero = uut.isZero, MemWrite = uut.MemWrite, MemRead = uut.MemRead, 
 		IRWrite = uut.IRWrite, RegWrite = uut.RegWrite, OutputWrite = uut.OutputWrite, MemSrc = uut.MemSrc, SrcA = uut.SrcA;
 	*/
+	reg [255:0] instructionCount;
+	reg [255:0] clockCount;
+	reg [255:0] CPI;
+	
+	
+	
+	
 	
 	wire [15:0] PC = uut.PCout;
 	wire [1:0] PCSrc = uut.PCSrc;
@@ -111,12 +118,20 @@ module top_test;
 	
 	initial begin //clock
 			#100;
+			instructionCount = 0;
+			clockCount = 0;
 			forever
 				begin
 					clock = 0;
 					#10;
 					clock = 1'b1;
+					if (current_state == 0) begin
+						instructionCount = instructionCount + 1;
+						CPI = clockCount / instructionCount;
+					end
 					#10;
+					clockCount = clockCount + 1;
+					
 				end
 	end	
 	
@@ -127,8 +142,7 @@ module top_test;
 
 		// Wait 100 ns for global reset to finish
 		#100;
-      //in = 'h13b0;
-		in = 'h7FFF;
+		in = 'h13b0;
 		// Add stimulus here
 		#100;
 	end
